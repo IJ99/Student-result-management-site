@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="admin score page.css">
+  <title>Student Scores Management</title>
+</head>
+<body>
+
+  <form id="scoreForm">
+    <label for="studentName">Student Name:</label>
+    <input type="text" id="studentName" name="studentName" required>
+
+    <label for="course">Course:</label>
+    <input type="text" id="course" name="course" required>
+
+    <label for="score">Score:</label>
+    <input type="number" id="score" name="score" required>
+
+    <button type="button" onclick="updateScore()">Update Score</button>
+  </form>
+
+  <table id="scoreTable">
+    <tr>
+      <th>Student Name</th>
+      <th>Course</th>
+      <th>Score</th>
+      <th>Action</th>
+    </tr>
+    <!-- Sample data, replace with dynamic data from the server -->
+    <tr>
+      <td>Adebayo Johnson</td>
+      <td>Cosc 467</td>
+      <td>85</td>
+      <td><button onclick="removeScore(this)">Remove</button></td>
+    </tr>
+    <tr>
+      <td>Itomebi Olamide</td>
+      <td>Cosc 678</td>
+      <td>92</td>
+      <td><button onclick="removeScore(this)">Remove</button></td>
+    </tr>
+  </table>
+
+  <script>
+    function updateScore() {
+      const studentName = document.getElementById('studentName').value;
+      const course = document.getElementById('course').value;
+      const score = document.getElementById('score').value;
+
+      // Here, you can send the data to the server for processing and update the table accordingly.
+
+      // For now, let's add a new row to the table with the entered data.
+      const table = document.getElementById('scoreTable');
+      const newRow = table.insertRow(table.rows.length);
+      newRow.innerHTML = `<td>${studentName}</td><td>${course}</td><td>${score}</td><td><button onclick="removeScore(this)">Remove</button></td>`;
+
+      // Clear the form
+      document.getElementById('scoreForm').reset();
+    }
+
+    function removeScore(button) {
+      // Here, you can send a request to the server to remove the corresponding data.
+
+      // For now, let's remove the row from the table.
+      const row = button.parentNode.parentNode;
+      row.parentNode.removeChild(row);
+    }
+  </script>
+
+</body>
+</html>
